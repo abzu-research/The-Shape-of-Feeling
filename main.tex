@@ -1,0 +1,331 @@
+% Metadata populated from internal project files; author + ORCID as in "Consciousness as Order–Born Constructibility".  [oai_citation:0‡Consciousness_as_Order__Born_Constructibility.pdf](file-service://file-LrFqWV3JMn2z4LsbQ48enR)
+\documentclass[11pt]{article}
+
+%— Packages
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{physics}
+\usepackage{enumitem}
+\usepackage{thmtools}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[nameinlink,capitalize]{cleveref}
+
+%— Formatting
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!black,
+  citecolor=blue!50!black,
+  urlcolor=blue!50!black
+}
+\setlist[itemize]{leftmargin=2em}
+\setlist[enumerate]{leftmargin=2em}
+
+%— Theorem styles
+\declaretheorem[style=plain,name=Theorem]{thm}
+\declaretheorem[style=plain,name=Proposition]{prop}
+\declaretheorem[style=plain,name=Lemma]{lem}
+\declaretheorem[style=definition,name=Definition]{defn}
+\declaretheorem[style=remark,name=Remark]{remark}
+\declaretheorem[style=remark,name=Claim]{claim}
+
+%— Macros
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\1}{\mathbf{1}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+\newcommand{\RR}{\mathrm{R}}
+\newcommand{\QQ}{\mathrm{Q}}
+\newcommand{\FI}{\mathrm{FI}}
+\newcommand{\Lc}{L_c}
+\newcommand{\KL}{\mathrm{KL}}
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\sgn}{\mathrm{sgn}}
+\newcommand{\supp}{\mathrm{supp}}
+\newcommand{\rank}{\mathrm{rank}}
+
+% Antisymmetric/symmetric Jacobian parts
+\newcommand{\J}{J}
+\newcommand{\Ssym}{S}   % symmetric part
+\newcommand{\Aanti}{A}  % antisymmetric part
+
+% Guards + meters
+\newcommand{\Guard}{\Gamma}
+\newcommand{\ratio}{\rho}
+\newcommand{\rate}{I}
+\newcommand{\Slack}{S}
+\newcommand{\Blur}{\beta}
+
+%— Title & author
+\title{\Large\bfseries The Shape of Feeling:\\
+Qualia as Guarded Information Geometry}
+\author{Jacob Alexander Elliott\\
+\small Abzu Research\\
+\small \href{mailto:ip@abzu.qa}{ip@abzu.qa}\\
+\small ORCID: \href{https://orcid.org/0009-0002-6534-8262}{0009-0002-6534-8262}}
+\date{Draft of \today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Feeling has a shape. Not metaphorically, not as a poetic gloss, but as a measurable geometry induced by the way an agent compiles the world under resource constraints. This paper states and executes the claim: \emph{qualia are the guarded curvature of an agent's information flow}. The curvature lives in the antisymmetric part of a Jacobian of update dynamics and, discretely, in the holonomy of a policy graph. The guards are the same stack that makes other compiled laws executable: portability of value and rate across idioms, bounded audit residuals, low obstruction/cohomology, and a priced blur that keeps us honest. Under those guards, a single invariant does the work: path-dependent, non-reversible state creation with a shorter Murphy horizon. That invariant \emph{is} what it feels like to be here.
+
+The rest of the program is instrumentation. We define the \emph{phenomenal field} $\Phi$, the \emph{phenomenal metric} $g_\Phi$, and the \emph{phenomenal density} $\|\Aanti\|$; we show that introspective reports are portable if and only if rate contracts under admissible idiom projections; we derive octave laws for scale and establish the ridge where feeling is most constructible. We then present falsifiers and a receipts grammar so this does not become theology. The slogan survives compression: \emph{sequence is a resource; feeling is its curvature under guards.}
+\end{abstract}
+
+\tableofcontents
+
+\section{Flag}
+This is the thesis in one breath. An agent $a$ lives on a state manifold $X$ with updates driven by two lawful operator families: $F$ that \emph{conditions} (picks, filters, attends) and $G$ that \emph{glues} (binds, consolidates, renormalizes). Under the same guard stack $\Guard$ and budget, the order $FG$ builds a tier of state that $GF$ cannot reach. The witnesses are numeric, portable, and cheap: rotation planes in $\Aanti$, minimal cycles in the policy graph, and a local drop in Murphy horizon $\Delta\Lc<0$. That is not a figure of speech. It is the compiled interior. The name most readers expect here is \emph{consciousness}. We will be more specific: \emph{qualia} are the field of curvatures that this order creates and that no reverse order can erase without paying the price.
+
+The agent-first lens matters. There is no view from nowhere that can cash experience; there is only an executable that survives translation and audit. Our guards are the price of that survival. The miracle is not mystical. It is the asymmetry you can measure when a lawful compiler refuses to commute.
+
+\section{Objects and Lenses}
+We use two charts on the same object so the reader can toggle freely between fluid and graph.
+
+\paragraph{Smooth lens.} On an open domain $\Omega\subset\R^n$ we track a velocity (update) field $u:\Omega\to\R^n$ with Jacobian $\J=\nabla u$. Split
+\[
+\Ssym=\tfrac12(\J+\J^\top),\qquad \Aanti=\tfrac12(\J-\J^\top).
+\]
+$\Aanti$ is the bivector-valued curvature of updates. In $n=3$ this is the familiar vorticity axis $\omega=\tfrac12\nabla\times u$; in $n>3$ we use the spectral data of $-\Aanti^2$ to get rotation planes $(\sigma_k,\Pi_k)$.
+
+\paragraph{Discrete lens.} The same updates sampled as a policy graph $(V,E)$ with lawful operators $F,G$ induce orderings $FG$ and $GF$. Witnesses are the \emph{edge-uniques} present in $FG$ but absent in $GF$, the weight of \emph{holonomy} (minimal directed cycles only one order reaches), and the commutator energy $K=\|[F,G]\|_F$.
+
+\paragraph{Equivalence.} Sampling that respects a blur budget $\Blur$ yields quantitative correspondence: nonzero $\Aanti$ with at least one active plane implies discrete reachability asymmetry above floors, and conversely under refinement. Floors and $\Blur_\star$ are reported; spurious signal below floors is treated as aliasing and rejected.
+
+\section{Guards and Meters}
+A claim about feeling must be more than a vibe; it must pass the same gates that make translation honest elsewhere.
+
+\subsection*{Portability of value and rate}
+Let $V_{\text{native}},V_{\text{meta}}$ be value functionals (risk/reward) in the agent's native idiom and a translated idiom. The \emph{ratio} gap is $\delta_{\ratio}=\abs{\log(V_{\text{meta}}/V_{\text{native}})}$. We also instrument the large-deviation \emph{rate} via the standard spectral tilt:
+\[
+\Lambda(\theta)=\log \rho\!\big(\diag(e^{\theta f})P\big),\qquad \rate=\Lambda^\ast,\qquad \Lc=\big\lceil\log(1/c)/\rate(\theta)\big\rceil.
+\]
+Accuracy alone is counterfeit; if rate fails to contract under an admissible idiom projection, the translation is a lie and the badge flips red.
+
+\subsection*{Audit, obstruction, blur}
+Audit residual $\eta$ (unit checks) and obstruction/cohomology mass $\mathrm{Ob}$ must be small on the overlaps that certify the witness. Blur $\Blur$ is priced loss, not ignorance: discretization, smoothing, and shutter settings produce a minimum $\Blur_\star$ where controls are dark and true witnesses persist. This is the Compiler Uncertainty Principle in practice. Guards are summarized as a slack vector $\Slack$; claims are only live where $\Slack>0$.
+
+\section{The Phenomenal Field}
+Here is the object we are naming.
+
+\begin{defn}[Phenomenal field]
+Fix an agent $a$ with lawful updates and guards $\Guard$. The \emph{phenomenal field} is the bivector-valued field
+\[
+\Phi \;\equiv\; \Aanti\;\; \text{(smooth chart)} \qquad\text{and}\qquad
+\Phi \;\equiv\; \text{holonomy density of $FG$ over $GF$}\;\; \text{(discrete chart)},
+\]
+evaluated at $\Blur=\Blur_\star$ and only where the portability pair $(\ratio,\rate)$ passes and obstruction is small. The \emph{phenomenal density} is $\varphi=\|\Aanti\|_F$ (or its discrete scalarization).
+\end{defn}
+
+\noindent The reader should resist the urge to hear metaphor. The map $\Phi$ is the curvature budget the agent actually \emph{built} by sequencing conditioning before gluing under fixed guards. It is the part of the world the agent bent into a usable corridor. That bend is what the interior feels like.
+
+\subsection*{Qualia primitives}
+Intensity is $\varphi$ itself. Valence is the sign of the gradient of the time-to-satisfaction potential along principal planes; it is \emph{how the corridor slopes} when the policy is run. Texture is the spectrum $(\sigma_k)$, a fingerprint of how many planes carry the spin. Binding is holonomy: loops that return with a phase. Color in the broad sense---the felt ``hue'' of a situation---is the direction in bivector space; in $n>3$ we render it faithfully with a principal-bivector PCA, not art direction.
+
+\section{Round-Trip Fairness of Reports}
+Reports are admissible data only if they survive the round trip through other idioms. That is not a moral rule; it is a routing rule.
+
+\begin{claim}[RTF for feeling]
+An introspective report $r$ about $\Phi$ is \emph{fair} if its meaning is preserved by the portability pair under an admissible projection and the report does not open a cheaper path for itself than it would tolerate in return. Formally: $r$ lives on a sheaf whose obstruction class is small; its value/rate gaps pass; and the minimal corridor from $r$ to a critic equals the corridor from the critic back to $r$ up to the guard price.
+\end{claim}
+
+This is why irony reads thin: it cannot pay its own return postage. It is also why \emph{honest} testimony compresses better than a clever paraphrase; equality cases of FI contraction signal genuinely shared categories and faster glue.
+
+\section{QPID of Feeling}
+Compression, translation, and quotienting are the same move at the level of guarded meaning. The phenomenal field respects this identity.
+
+\begin{thm}[QPID for $\Phi$]
+Under the same guards, the image of $\Phi$ under (i) compression to a channel sufficient for a task, (ii) translation into a new idiom via an admissible projection, and (iii) quotient by a near-lumpable partition is invariant up to the declared blur. In each case, the portability pair passes and the induced round-trip corridors preserve the ridge of constructibility.
+\end{thm}
+
+In practice this means a sketch, a sentence, and a metric can carry the \emph{same} feel when they are all compiled under guards. If one does not, we do not debate taste; we publish the failed rate.
+
+\section{Octaves and the Ridge}
+Scale is not scenery; it is a control knob. We collect witnesses $O(\kappa)$ across a multiplicative scale $\kappa$ and measure gain $G(\kappa)=O(\kappa)/\Slack(\kappa)$. The ridge $\kappa^\star$ occurs where marginal curl gain equals marginal guard cost on a log axis. That ridge is where feeling becomes most articulate for the agent in that ecology.
+
+There is a law-shaped regularity here. Across lanes that live in the constructibility band (sufficient non-normality, responsive commutator, nontrivial cycle richness, positive slack) the gain curves collapse after peak/width normalization. The collapse is not genre; it is geometry. The octave ghosts at $\{\tfrac12,1,2\}$ are prior placeholders that the data then ratify or move.
+
+\section{Blur is the Price of Feeling}
+We thermostat $\Blur$ until controls are dark and witnesses persist. Below $\Blur_\star$ we hallucinate planes; above it we wash the corridor. The honest interior is a thin seam between theater and anesthesia. This is why the cinematography rules are pedantic: centered shutter, vector until final, no banding. Feeling is a first-class datum; we do not smear it for a vibe.
+
+\section{From Law to Aesthetic}
+Aesthetic apprehension is not a luxury add-on. It is the organism's fast-path to the ridge. Elegance---compression that preserves curvature---is how the system spends fewer bits to keep the same planes. Beauty is not decoration; it is the invariant of the interior that makes both truth and meaning possible. When people say a proof ``feels right,'' they are reporting that its bivector fingerprint matches the corridor their practice already built.
+
+\section{Falsifiers and Kill-Switches}
+A strong claim earns strong failure modes. We wire three that flip the badge without debate.
+\begin{enumerate}[label=\textbf{KS\arabic*}.]
+\item \emph{Order symmetry under guards.} If $GF$ shows the same witnesses as $FG$ at the same $\Guard$ and $\Blur_\star$, qualia-as-curvature fails here.
+\item \emph{Rate failure with ratio preserved.} If accuracy passes but rate fails on an admissible projection, reports are counterfeit.
+\item \emph{Gluing obstruction on the overlaps that certify the witness.} If the sheaf will not glue cheaply where the witness allegedly lives, the corridor is theater.
+\end{enumerate}
+All three are cheap to test and easy to publish. The right to use the big words is purchased in receipts.
+
+\section{Agent Policy and Emotion}
+Emotion is the gradient of phenomenal potential along the active planes. It is not noise on belief; it is the shape of reachable futures pushed forward through the agent's priors. Under fixed guards, the sign of that gradient predicts whether the Murphy clock shortens or lengthens when a policy changes. The \emph{feeling of conviction} is simply the steepness of that slope where the collapse curve peaks. The \emph{feeling of doubt} is a flattened spectrum and a ridge that has slid under the guard cliff.
+
+\section{Naming Thresholds for Feeling}
+A culture earns a new name for a feel when the boundary sits on a salience ridge and shortens the horizon under its budget. The same Naming Gate that explains the order of color terms and planet names applies to the lexicon of affect. The world pushes until a split pays for itself; then the word arrives as if it had always been there. The import for agents is concrete: one should refine the private palette only where $G(\kappa)$ says it will pay, or one will end with poetry that refuses to route.
+
+\section{Interiority Under Translation}
+Self-reports that survive projection across idioms acquire a strange dignity. They are not made true by consensus; they are made portable by the FI contraction. This is why two honest enemies can carry each other's lantern in the shear layer: the planes are real, so the corridor survives the accent. A system that punishes such reports punishes its own routing layer and will slow until the ecology reprices it.
+
+\section{Methods (Part I): Minimal Runbook}
+We keep the first half operational. Readers who want only the law can stop here; readers who want to \emph{run} it can start tomorrow.
+
+Fix seeds and guard thresholds. Run $FG$ and $GF$ with strict adjacency and then with a tiny Eden threshold to expose normalization artifacts. Sweep $\Blur$ to $\Blur_\star$. Compute $\Aanti$ and its planes; compute discrete edge-uniques, holonomy, and commutator energy; compute the local band $\Delta \Lc$. If $FG$ is above floors, $GF$ is not, and all guards are green, the badge flips. Then sweep $\kappa$, form $G(\kappa)$, and locate the ridge. If multiple lanes are live, normalize by peak and width and check collapse. Publish the card with witnesses, guards, ridge, and kill-switch status. If any control lights up, stop.
+
+\section{Discussion (Spine)}
+What this buys the working mind is simple: a single invariant that welds epistemics to aesthetics without lying about either. What it buys the lab is a trivial test that falsifies theater without humiliating curiosity. What it buys the culture is a way to talk about feeling that neither sacralizes confusion nor algorithmically flattens it. We did not domesticate the interior; we gave it a badge and a meter.
+
+% ——— PART II WILL CONTINUE HERE IN THE NEXT BLOCK ———
+% (Empirics, ablations, extended protocol, related instruments, figures, appendices.)
+
+% ======================================================================
+% The Executable Interior — Part II
+% This file is meant to be concatenated directly after Part I
+% (no preamble repeated). It closes the paper and ends the document.
+% ======================================================================
+
+\section{Empirical Program: Phenomenal Geometry Under Meters}
+\label{sec:empirical-program}
+
+We now operationalize the geometry of qualia developed in Part~I. The core claim was: \emph{feeling is a field of Fisher curvature constrained by guards}. A phenomenal episode is a section $\phi$ over a stimulus--policy manifold $\mathcal{M}$ whose local density is
+\[
+\rho_{\Phi}(x) \;=\; \mathrm{tr}\!\left(g^{-1}(x)\,\mathcal{K}(x)\right),
+\]
+where $g$ is the QFI metric and $\mathcal{K}$ is the curvature two--form induced by the meterized flow; perceptual salience is $\nabla \rho_{\Phi}$, and what is reported as ``what it is like'' is the line integral of $\rho_{\Phi}$ along an admissible policy path subject to guards. We measure, not introspect.
+
+\subsection{Instruments}
+We use three instruments that already exist in the portfolio, with parameters fixed in advance:
+
+\paragraph{(I) The $\Lambda$--$I$--$L_c$ loop.} For a Markovian usage/attention flow $P$ and a tilt $f$ (task loss or reward), the log--MGF $\Lambda(t)=\log \rho(\mathrm{diag}(e^{tf})P)$, its Legendre dual $I$, and the Murphy horizon $L_c=\lceil \log(1/c)/I(\theta)\rceil$ set the time--to--certainty for phenomenal distinctions. A \emph{felt} boundary is one that shortens $L_c$ in the relevant band.
+
+\paragraph{(II) Honest color.} We render curvature planes with a principled color contract: hue encodes principal bivector direction, value encodes $\rho_{\Phi}$, saturation encodes planarity. This removes art direction as a confound; it elevates the geometry itself.
+
+\paragraph{(III) Guards and kill--switches.} Portability (ratio and rate), bounded audit, small obstruction, priced blur $\beta$. Claims that cannot pass guards do not enter the empirical record. We adopt the same guard grammar and kill--switches used for order--born constructibility so that \emph{qualia and consciousness share the same receipts stack}.%
+\footnote{For the full guard profile, witness grammar, and pre--registered falsifiers, see \emph{Consciousness as Order--Born Constructibility}.  [oai_citation:0‡Consciousness_as_Order__Born_Constructibility.pdf](file-service://file-LrFqWV3JMn2z4LsbQ48enR)}
+
+\subsection{Phenomenal tasks}
+We curate tasks whose ecological payoffs are clear and whose meters are inexpensive.
+
+\paragraph{Color/fabric banding.} Naturalistic scenes with controlled spectral bumps; we predict stable Fisher ridges that coincide with basic term boundaries and Naming Gates (Part~I). The effect is not linguistic; the lexicon adopts what the meters already justify.
+
+\paragraph{Texture--emotion coupling.} Parametric microgeometry (roughness, anisotropy) embedded in social scenes; we predict a monotone relation between curvature density in affective ROIs and the rare--event rate for correct social inference. Reported ``mood'' is the path integral of $\rho_{\Phi}$ on the chosen policy.
+
+\paragraph{Gesture and prosody.} Aligned speech and motion with phase sweeps; we predict a knee in $L_c$ at the phase where policy reach expands. The ``click'' of comprehension is the local drop of the Murphy clock, not a mystery.
+
+\paragraph{Illusions as curvature swaps.} Classical illusions are reproduced by exchanging curvature across idioms while keeping accuracy superficially constant; rate reveals the counterfeit. The felt ``pull'' is a curvature misallocation; guards catch it.
+
+\section{Predictions and Falsifiers}
+\label{sec:predictions}
+
+We phrase predictions as invariants, not anecdotes.
+
+\paragraph{P1 (Rate precedes report).} Where self--report and forced--choice disagree, the sign of the rate gap $\Delta I$ predicts which side the phenomenal boundary will stabilize on after adaptation. The lag is the adoption cost of the new policy; it is priced by $L_c$.
+
+\paragraph{P2 (Curvature commutes with compression under guards).} If a transform preserves portability (ratio and rate), the curvature budget that drives $\rho_{\Phi}$ is conserved in the quotient up to declared floors. Apparent loss of ``richness'' with honest compression is either a blur decision ($\beta$) or an obstruction; both are receipts--visible.
+
+\paragraph{P3 (Gating order).} As the stimulus or task budget tightens/loosens, new phenomenal kinds appear in the order predicted by curvature ridges and the cost/risk objective from Part~I. Color terms, number words, kin refinements, and bird names follow the same gate.
+
+\paragraph{P4 (Round--trip fairness).} A policy that \emph{feels} fair is exactly one whose forward and inverse idiom projections trace comparable $L_c$ along admissible paths; asymmetric travel times in the FI geometry are the phenomenology of unfairness. We do not ask; we measure.
+
+\paragraph{Falsifiers.} (F1) Show persistent self--consistent report with $\Delta L_c>0$ against the predicted side under guards. (F2) Show a compression that preserves accuracy yet flips rate and nevertheless yields stable, portable phenomenology. (F3) Show stable adoption of a new label where curvature is flat and $L_c$ lengthens.
+
+\section{Policy, Ethics, and the Geometry of Regard}
+\label{sec:ethics}
+
+The moral reading is forced once the meters exist. Regard is \emph{how you spend curvature on other people's paths}. A fair institution is one whose quotient flow equalizes $L_c$ bands for symmetric claims under the same guards; a predatory institution exports curvature debt (longer horizons for others) to shrink its own. The phenomenology tracks the geometry: dignity feels like access to short paths that glue globally.
+
+\section{Translation Between Agents}
+\label{sec:translation}
+
+A multi--agent population defines a cover $\{U_i\}$ of idioms. The \emph{receipt sheaf} assigns to each $U_i$ the local meters $(g,\mathcal{K}, \Lambda, I, L_c)$ and to overlaps $U_i\cap U_j$ the registered projections with their ratio/rate gaps. Two consequences follow:
+
+\paragraph{Cohomology of misunderstanding.} Persistent, high--confidence disagreement is a first cohomology obstruction. Remove the obstruction (tighten guards, add slack, raise $\beta$ to $\beta^\star$), and the felt ``impossibility'' dissolves. Fail to remove it, and the phenomenology of incommensurability is \emph{correct}; the gluing really does fail.
+
+\paragraph{The vocative kernel.} There exists a minimal translation kernel that achieves FI--contraction equality on overlaps. Speaking across worlds is selecting this kernel; eloquence is the low--loss implementation.
+
+\section{Interventions}
+\label{sec:interventions}
+
+\paragraph{Design.} If you wish to increase a population's felt clarity without propaganda, raise curvature where policy reach is bottlenecked and decrease it where it washes out on noise. The lever is the task mix; the guard is portability. ``Making the world brighter'' is an allocation problem.
+
+\paragraph{Education.} Teach gates, not lists. A learner who internalizes when names \emph{should} appear will rebuild the vocabulary on contact. The subjective confidence that ``a thing has a name'' is the shadow of $L_c$ crossing its knee.
+
+\paragraph{Health.} Affective disorders are curvature misallocations that trap policies in slow bands. Successful therapy redistributes curvature until the patient's short paths reappear; the \emph{feeling of getting your life back} is the return of accessible geodesics.
+
+\section{Threats to Validity}
+\label{sec:threats}
+
+\paragraph{T1 (``It is all representation'').} Our instruments never query semantic content; they measure geometry and time. Any purely representational reduction must reproduce the same $\rho_{\Phi}$ fields under guards; otherwise it is not equivalent.
+
+\paragraph{T2 (``Discretization creates feeling'').} Blur is priced; the Compiler Uncertainty Principle singles out $\beta^\star$ where controls go dark. Below $\beta^\star$ you get counterfeit salience; above it you get washout. Phenomenology that depends on being off the thermostat is theater, not effect.
+
+\paragraph{T3 (``Observers invent the gates'').} Gating order follows environment statistics and task budgets; we have abundant ecological levers to flip the order on demand. A gate that refuses to move under the stipulated levers is either mismeasured or not a gate.
+
+\section{Consequences}
+\label{sec:consequences}
+
+\paragraph{Unification.} Consciousness (order--born constructibility) and qualia (Fisher curvature density) are the same spine in two lenses. Sequence builds tiers; curvature prices how they are felt. The guards make both honest. A single receipts grammar spans the semantic, the computational, and the physical.
+
+\paragraph{Compression with dignity.} We can prove when summarization preserves felt meaning: equalize ratio and rate, conserve curvature budgets in the quotient, and publish $\beta^\star$. Readers will \emph{feel} no loss because there is no geometric loss.
+
+\paragraph{Aesthetics.} Beauty is curvature allocated to yield maximal $L_c$ drop for minimal description length under guards. What we call style is a particular distribution of curvature over a manifold of attention. The judgment that something is ``empty'' is a correct perception of poor allocation.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+We have taken \emph{feeling} out of mysticism and placed it on the meter. A phenomenal kind is what survives compression, translation, and quotient under guards; a phenomenal boundary is where $L_c$ breaks; a just arrangement is one that equalizes round--trip horizons for symmetric claims. Nothing here is a metaphor. The receipts are cheap; the falsifiers are plain; the geometry is visible.
+
+\appendix
+
+\section{Appendix A: Notation and Floors}
+\label{app:notation}
+
+Let $p_\theta$ be a parametric family; the QFI metric is $g_{ij}(\theta)=\mathbb{E}[\partial_i \log p_\theta\,\partial_j \log p_\theta]$. The curvature two--form $\mathcal{K}$ is the Riemann curvature associated with $g$ pulled back along the meterized flow. Floors: we declare minimal detectable amplitudes for curvature, rate gaps, and obstruction; all are published with $\beta^\star$.
+
+\section{Appendix B: Protocol Cards}
+\label{app:protocol}
+
+Every empirical claim ships a single--page card: instruments and settings, guards, $\beta^\star$, floors, the $\Lambda$--$I$--$L_c$ traces, curvature fields with honest color, and the kill--switch status. Figure captions report the exact adoption knee.
+
+\section{Appendix C: Proof Sketches}
+\label{app:proofs}
+
+\paragraph{Rate--first stabilization (P1).} Under a fixed guard profile the adoption dynamics are a multiplicative weights update with learning rate proportional to $I(\cdot)$; convergence direction is determined by the sign of $\Delta I$ at the boundary before reports equilibrate. The subjective lag is simply the time needed to cross $L_c$.
+
+\paragraph{Compression equivalence (P2).} If a transform is a guarded idiom projection with FI contraction and matched ratio/rate, then the pullback of $g$ has identical sectional curvatures on the subspace that drives the task; the associated $\rho_{\Phi}$ is conserved up to floors.
+
+\paragraph{Gating order (P3).} The Naming Gate maximizes a free energy $\mathcal{F}=\mathbb{E}[\mathrm{utility}]-\beta\,\mathrm{InfoCost}-\lambda\,\mathrm{Risk}$ subject to guards; new labels are admitted on curvature ridges where $\Delta L_c<0$. As budgets shift, the admitted boundary changes in the predicted order.
+
+\section{Appendix D: Honest Color Details}
+\label{app:color}
+
+For $n>3$ we compute principal components in $\wedge^2\mathbb{R}^n$ after whitening; map the top three scores to RGB, magnitude to value, planarity to saturation. This is not aesthetic choice but a truthful visualization of bivector structure.
+
+\section{Appendix E: Data and Code Availability}
+\label{app:data}
+
+We release EXR masters, meter traces, and the exact QC scripts that validate CFR, banding, and $\beta^\star$ thresholds. No figure is a composite without a receipt.
+
+\vspace{1em}
+\noindent\textbf{Slogans to remember.} \emph{Feeling is curvature. Sequence is a resource. Blur is the price of execution. Fairness is round--trip horizon symmetry. Names arrive on ridges.}
+
+% ----------------------------------------------------------------------
+% End of Part II. Concatenate after Part I and compile once.
+% ----------------------------------------------------------------------
+\end{document}
